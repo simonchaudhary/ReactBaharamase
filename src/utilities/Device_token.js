@@ -21,16 +21,18 @@ class DeviceToken extends Component {
     messaging.requestPermission().then(()=>{
       return messaging.getToken()
     }).then((token) =>{
+      this.token= token
       console.log("token:", token)
+      this.setState({
+        token: this.token,
+      });
     }).catch(err =>{
       console.log('err:', err)
     })
     // const token= await messaging.getToken({vapidKey: "BFOqQ74Kc-wW3vHowieYzVrB9MzjXb4MYLgN4qjiMgsjSm-gjvKbNk4zAMJnDyhjXHytKJYRqoOCmvTGDYVWxag"});
     // console.log("token:", token)
     // this.token= "New token"
-    this.setState({
-      token: this.token,
-    });
+   
   }
 
   render() {
