@@ -10,9 +10,9 @@ import reportWebVitals from './reportWebVitals';
 import DeviceToken from "./utilities/Device_token"
 
 ReactDOM.render( <
-    React.StrictMode >
+    React.StrictMode > { /* <DeviceToken /> */ } <
+    App / >
     <
-    DeviceToken / > { /* <App /> */ } <
     /React.StrictMode>,
     document.getElementById('root')
 );

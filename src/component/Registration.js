@@ -10,7 +10,7 @@ export class Registration extends Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                alert("user logged in")
+                alert(user.uid)
             } else {
                 alert("user logged out")
             }
@@ -50,7 +50,8 @@ export class Registration extends Component {
     }
 
     onChange = (e) => this.setState({
-        [e.target.name]: e.target.value });
+        [e.target.name]: e.target.value
+    });
 
     render() {
         return ( <
@@ -74,8 +75,8 @@ export class Registration extends Component {
             placeholder = "Password" / >
             <
             button type = "submit"
-            value = "Register" > Register < /button> <
-            /form> <
+            value = "Register" > Register < /button> < /
+            form > <
             /div> <
             div className = "signupContainer" >
             <
@@ -94,8 +95,8 @@ export class Registration extends Component {
             placeholder = "Password" / >
             <
             button type = "submit"
-            value = "Register" > Login < /button> <
-            /form> <
+            value = "Register" > Login < /button> < /
+            form > <
             /div>
 
             <
