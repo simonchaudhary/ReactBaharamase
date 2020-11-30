@@ -5,10 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render( 
-    <React.StrictMode >
-    <App/>
-    </React.StrictMode>,
+
+//Device token class
+import DeviceToken from "./utilities/Device_token"
+
+ReactDOM.render( <
+    React.StrictMode >
+    <
+    DeviceToken / > { /* <App /> */ } <
+    /React.StrictMode>,
     document.getElementById('root')
 );
 // serviceWorker.unregister();
