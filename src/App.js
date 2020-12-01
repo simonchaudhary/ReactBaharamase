@@ -1,40 +1,63 @@
 import "./css/test.css";
 import React from "react";
-import Registration from './component/Registration'
-import Session from './component/Session'
+import Registration from "./component/Registration";
+import Session from "./component/Session";
+import Play from "./component/Play";
 import firebase from "./config/firebaseConfig";
 // import {  Col,Row, Container } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Pages
-import DeviceToken from "./utilities/Device_token"
+import DeviceToken from "./utilities/Device_token";
+import { Col } from "react-bootstrap";
 
 class App extends React.Component {
+    state = {
+        uid: "",
+    };
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                alert(user.uid);
+                this.setState({ uid: user.uid });
+
+                document.getElementById("sessionpage").style.display = "block";
+            } else {
+                alert("user logged out");
+                document.getElementById("registerpage").style.display = "block";
+            }
+        });
+    }
 
     render() {
-        return ( <
+        return (
+            //   <Play />
+            <
+            Col >
+            <
+            div id = "registerpage" >
+            <
+            Registration / >
+            <
+            /div>{" "} <
+            div id = "sessionpage" >
+            <
             Session / >
-            // <Registration/>
+            <
+            /div>{" "} <
+            /Col>
         );
     }
 }
 
 export default App;
 
-
-
-
-
-
-
-
 // import "./App.css";
 // import React from "react";
 // import firebase from "./config/firebaseConfig";
 
 // class App extends React.Component {
-
-
 
 //   constructor(props) {
 //     super(props);
