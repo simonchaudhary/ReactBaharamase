@@ -1,130 +1,121 @@
-import React, { Component } from "react";
-import firebase from "../config/firebaseConfig";
+import React, { useState, useEffect } from "react";
+import { Form, Button } from "react-bootstrap";
+import { auth, firestore } from "../config/firebaseConfig";
 
-export class Registration extends Component {
-    state = {
-        email: "",
-        password: "",
-    };
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/style.css";
+import "../css/form.css";
 
-    // componentDidMount() {
-    //     firebase.auth().onAuthStateChanged((user) => {
-    //         if (user) {
-    //             alert("register" + user.uid);
-    //         } else {
-    //             alert("user logged out");
-    //         }
-    //     });
-    // }
+function Registration() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        alert("register");
-        document.getElementById("registerpage").style.display = "none";
-        alert("email: " + this.state.email + " password" + this.state.password);
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((cred) => {
-                // save to firebase
-                alert("save");
-                firebase
-                    .firestore()
-                    .collection("ReactUsers")
-                    .add({
-                        email: this.state.email,
-                        password: this.state.password,
-                    })
-                    .then((cred) => {
-                        alert("save to firebase");
-                    })
-                    .catch((err) => {
-                        alert("firestore error " + err);
-                    });
-            })
-            .catch((err) => {
-                alert("error " + err);
-            });
-    };
+  useEffect(() => {
+    console.log("regiter useeffect");
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log("User is loged In ");
+      } else {
+        console.log("register logged out");
+      }
+    });
+  }, []);
 
-    onSubmitLogin = (e) => {
-        e.preventDefault();
-        alert(
-            " login email: " + this.state.email + " password" + this.state.password
-        );
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then((cred) => {
-                alert("Login");
-                document.getElementById("registerpage").style.display = "none";
-            })
-            .catch((err) => {
-                alert("error " + err);
-            });
-    };
+  const onRegister = e => {
+    e.preventDefault();
+    alert("register");
+    alert("email: " + email + " password" + password);
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+        // save to firebase
+        firestore
+          .collection("ReactUsers")
+          .add({
+            email: email,
+            password: password,
+          })
+          .then(cred => {
+            console.log("save to firebase");
+          })
+          .catch(err => {
+            console.log("firestore error " + err);
+          });
+      })
+      .catch(err => {
+        console.log("error " + err);
+      });
+  };
 
-    onChange = (e) =>
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
+  const onLogin = e => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(cred => {
+        console.log("User is Login");
+      })
+      .catch(err => {
+        console.log("error " + err);
+      });
+  };
 
-    render() {
-        return ( <
-            div className = "Container" >
-            <
-            h1 > Register < /h1>{" "} <
-            div className = "loginContainer" >
-            <
-            form onSubmit = { this.onSubmit } >
-            <
-            input type = "text"
-            name = "email"
-            value = { this.state.email }
-            onChange = { this.onChange }
-            placeholder = "Email" /
-            >
-            <
-            input type = "password"
-            name = "password"
-            value = { this.state.password }
-            onChange = { this.onChange }
-            placeholder = "Password" /
-            >
-            <
-            button type = "submit"
-            value = "Register" >
-            Register { " " } <
-            /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            div className = "signupContainer" >
-            <
-            form onSubmit = { this.onSubmitLogin } >
-            <
-            input type = "text"
-            name = "email"
-            value = { this.state.email }
-            onChange = { this.onChange }
-            placeholder = "Email" /
-            >
-            <
-            input type = "password"
-            name = "password"
-            value = { this.state.password }
-            onChange = { this.onChange }
-            placeholder = "Password" /
-            >
-            <
-            button type = "submit"
-            value = "Register" > { " " }
-            Login { " " } <
-            /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            /div>
-        );
-    }
+  return (
+    <div className="registerPage">
+      <div className="container">
+        <h1>Registration</h1>
+        <Form onSubmit={onRegister}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              placeholder="Enter email"
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Register
+          </Button>
+        </Form>
+      </div>
+
+      <div className="container">
+        <h1>Login</h1>
+        <Form onSubmit={onLogin}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              placeholder="Enter email"
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Login
+          </Button>
+        </Form>
+      </div>
+    </div>
+  );
 }
 
 export default Registration;
