@@ -70,7 +70,6 @@ function Sessions({ uid, email, token }) {
   }
 
   const join = (owner, ownerDeviceToken) => {
-    alert("join owner " + owner + "woner token " + ownerDeviceToken);
     const name = email;
     const message = name + " Wants to join";
     firestore.collection("notification").doc("ss").set({
@@ -133,12 +132,16 @@ function Sessions({ uid, email, token }) {
         {sessions.map(session => (
           <div className="content">
             <div className="join">
-              <button
-                onClick={() => join(session.owner, session.ownerDeviceToken)}
-                className="title"
-              >
-                Join
-              </button>
+              {uid === session.owner ? (
+                <p>Not Join</p>
+              ) : (
+                <button
+                  onClick={() => join(session.owner, session.ownerDeviceToken)}
+                  className="title"
+                >
+                  Join
+                </button>
+              )}
             </div>
             <div className="box">
               <p className="detail"> {session.owner} </p>
