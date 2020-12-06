@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
 import FirestoreMessage from "./component/FirestoreMessage";
+import Play from "./component/Play";
 
 import {
   requestFirebaseNotificationPermission,
@@ -50,6 +51,7 @@ function App() {
       <Registration />
       <Sessions uid={uid} email={email} token={token} />
       <FirestoreMessage uid={uid} token={token} />
+      <Play uid={uid} />
     </div>
   );
 }

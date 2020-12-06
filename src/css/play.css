@@ -1,0 +1,38 @@
+.play_container {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightcoral;
+  display: grid;
+  place-content: center;
+}
+
+.play_table {
+  width: 80vw;
+  height: 60vh;
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user_card {
+  width: 200px;
+  height: 200px;
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user_card .user_name {
+  width: 150px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.div {
+  background-color: magenta;
+}
