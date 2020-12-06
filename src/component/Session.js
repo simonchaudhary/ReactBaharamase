@@ -53,7 +53,6 @@ function Session() {
       .signOut()
       .then(cred => {
         console.log("Logout successful");
-        document.getElementById("sessionpage").style.display = "none";
       })
       .catch(error => {
         console.log("error logout " + error);
