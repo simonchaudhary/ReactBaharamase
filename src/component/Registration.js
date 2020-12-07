@@ -8,17 +8,7 @@ import "../css/registration.css";
 function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // useEffect(() => {
-  //   console.log("regiter useeffect");
-  //   auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       console.log("User is loged In ");
-  //     } else {
-  //       console.log("register logged out");
-  //     }
-  //   });
-  // }, []);
+  const [isRegisterScreen, setIsRegisterScreen] = useState(true);
 
   const onRegister = e => {
     e.preventDefault();
@@ -58,60 +48,77 @@ function Registration() {
       });
   };
 
+  const loginHere = () => {
+    setIsRegisterScreen(false);
+  };
+  const registerHere = () => {
+    setIsRegisterScreen(true);
+  };
+
   return (
     <div className="registerPage">
-      <div className="container">
-        <h1>Registration</h1>
-        <Form onSubmit={onRegister}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
-              placeholder="Enter email"
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              onChange={e => setPassword(e.target.value)}
-              value={password}
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Register
-          </Button>
-        </Form>
-      </div>
-
-      <div className="container">
-        <h1>Login</h1>
-        <Form onSubmit={onLogin}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
-              placeholder="Enter email"
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              onChange={e => setPassword(e.target.value)}
-              value={password}
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Login
-          </Button>
-        </Form>
+      {isRegisterScreen ? (
+        <div className="container" id="register_container">
+          <h2>Registration</h2>
+          <Form onSubmit={onRegister}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={e => setPassword(e.target.value)}
+                value={password}
+                placeholder="Password"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Register
+            </Button>
+          </Form>
+        </div>
+      ) : (
+        <div className="container" id="login">
+          <h2>Login</h2>
+          <Form onSubmit={onLogin}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={e => setPassword(e.target.value)}
+                value={password}
+                placeholder="Password"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </Form>
+        </div>
+      )}
+      <div className="register__footer">
+        <div className="div__button" onClick={() => loginHere()}>
+          Login Here
+        </div>
+        <div className="div__button" onClick={() => registerHere()}>
+          Register Here
+        </div>
       </div>
     </div>
   );
