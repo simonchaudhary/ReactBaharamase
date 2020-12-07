@@ -14,7 +14,7 @@ function Play({ uid }) {
   const getSessionUsers = uid => {
     firestore
       .collection("reactApp")
-      .doc("Voc5C7siRwQlPBpjy36rZROzT4f1")
+      .doc("xfzHyVuw31fLjYanGwNbKkuZiwP2")
       .onSnapshot(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data().currentUser);
@@ -34,7 +34,7 @@ function Play({ uid }) {
 
   const turn = async () => {
     const result = await axios.put(
-      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/currentUser/Voc5C7siRwQlPBpjy36rZROzT4f1"
+      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/currentUser/xfzHyVuw31fLjYanGwNbKkuZiwP2"
     );
     console.log(result);
     return result;
