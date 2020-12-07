@@ -1,0 +1,13 @@
+.registerPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: khaki;
+  display: grid;
+  place-content: center;
+}
+
+.container {
+  width: 40vw;
+  background-color: #f5f5f5;
+  padding: 20px;
+}

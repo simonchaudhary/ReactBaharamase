@@ -3,23 +3,22 @@ import { Form, Button } from "react-bootstrap";
 import { auth, firestore } from "../config/firebaseConfig";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/style.css";
-import "../css/form.css";
+import "../css/registration.css";
 
 function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    console.log("regiter useeffect");
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log("User is loged In ");
-      } else {
-        console.log("register logged out");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   console.log("regiter useeffect");
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       console.log("User is loged In ");
+  //     } else {
+  //       console.log("register logged out");
+  //     }
+  //   });
+  // }, []);
 
   const onRegister = e => {
     e.preventDefault();
