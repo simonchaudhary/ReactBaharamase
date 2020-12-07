@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { firestore, auth } from "../config/firebaseConfig";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 import Modal from "react-modal";
 import "../css/modalstyle.css";
@@ -8,17 +9,28 @@ import "../css/modalstyle.css";
 Modal.setAppElement("#root");
 
 function FirestoreMessage({ uid, token }) {
-  console.log("firestoremessage ");
+  console.log("firestoremessage ", token);
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState({
     title: "def title",
     description: "def description",
   });
+  const [sessionOwner, setSessionOwner] = useState();
+  const [playerJoinUid, setPlayerJoinUid] = useState();
 
-  function toggleModal() {
+  const modalAccept = async () => {
     deleteNotification();
     setIsOpen(!isOpen);
-  }
+    const data = {
+      uID: playerJoinUid,
+    };
+    const result = await axios.put(
+      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
+        sessionOwner,
+      data
+    );
+    console.log(result);
+  };
 
   function modalCancel() {
     deleteNotification();
@@ -46,7 +58,10 @@ function FirestoreMessage({ uid, token }) {
       .onSnapshot(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data().title);
+          console.log("player join uid :", doc.data().playerJoinUid);
+          setPlayerJoinUid(doc.data().playerJoinUid);
           const owner = doc.data().owner;
+          setSessionOwner(doc.data().owner);
           console.log("owner " + owner);
           console.log("uid " + uid);
           if (owner === uid) {
@@ -80,11 +95,11 @@ function FirestoreMessage({ uid, token }) {
 
   return (
     <div>
-      <h4>{uid}</h4>
-      <h3>{token}</h3>
+      {/* <h4>{uid}</h4>
+      <h3>{token}</h3> */}
       <Modal
         isOpen={isOpen}
-        onRequestClose={toggleModal}
+        onRequestClose={modalAccept}
         contentLabel="My dialog"
         className="mymodal"
         overlayClassName="myoverlay"
@@ -93,7 +108,7 @@ function FirestoreMessage({ uid, token }) {
         <h2>{title}</h2>
         <div className="row">
           <Button onClick={modalCancel}>Cancel</Button>
-          <Button onClick={toggleModal}>Accept</Button>
+          <Button onClick={modalAccept}>Accept</Button>
         </div>
       </Modal>
     </div>

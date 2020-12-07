@@ -16,10 +16,14 @@ function Play({ uid }) {
       .collection("reactApp")
       .doc("Voc5C7siRwQlPBpjy36rZROzT4f1")
       .onSnapshot(function (doc) {
-        console.log("Document data:", doc.data().currentUser);
-        console.log("User : ", doc.data().users);
-        setCurrentPlayer(doc.data().currentUser);
-        setUsers(doc.data().users);
+        if (doc.exists) {
+          console.log("Document data:", doc.data().currentUser);
+          console.log("User : ", doc.data().users);
+          setCurrentPlayer(doc.data().currentUser);
+          setUsers(doc.data().users);
+        } else {
+          console.log("no document exist");
+        }
       });
   };
 
@@ -40,8 +44,7 @@ function Play({ uid }) {
     <div>
       <div className="play_container">
         <h5>Current Player {currentPlayer}</h5>
-        <h5>Uid {uid}</h5>
-        {currentPlayer === uid ? <p>yes</p> : <p>no</p>}
+        {/* <h5>Uid {uid}</h5> */}
         <div className="play_table">
           {users.map((user, index) => (
             <div className="user_card">
@@ -55,13 +58,8 @@ function Play({ uid }) {
                   ),
                 ]
               ) : (
-                <p>not u</p>
+                <p></p>
               )}
-              {/* {currentPlayer === user ? (
-                <Button onClick={() => turn()}> Turn</Button>
-              ) : (
-                <p>Not Your Turn</p>
-              )} */}
             </div>
           ))}
         </div>

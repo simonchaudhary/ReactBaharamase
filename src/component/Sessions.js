@@ -9,6 +9,7 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
+import FirestoreMessage from "./FirestoreMessage";
 
 import "../css/style.css";
 import "../css/test.css";
@@ -30,19 +31,13 @@ function Sessions({ uid, email, token }) {
   }, []);
 
   function createSession() {
-    alert("create");
-
     async function createSes() {
       const data = {
         owner: uid,
-        session: uid,
+        session: email,
         ownerDeviceToken: token,
-        users: [
-          "BOT",
-          "erLuS3X5J7fojlmKwAsYCT46UHj1",
-          "cGd0Gz9dYHYfG7ZDNahNYidxCSm1",
-        ],
-        currentUser: "cGd0Gz9dYHYfG7ZDNahNYidxCSm1",
+        users: [uid],
+        currentUser: uid,
       };
       const result = await axios.post(
         "https://us-central1-bahramasefirebase.cloudfunctions.net/session/" +
@@ -54,25 +49,11 @@ function Sessions({ uid, email, token }) {
     createSes();
   }
 
-  // function join(currentUser, ownerDeviceToken) {
-  //   alert(`current user, ${currentUser}, ${ownerDeviceToken}`);
-  // }
-
-  function gettoken() {
-    alert("token");
-    requestFirebaseNotificationPermission()
-      .then(firebaseToken => {
-        console.log(firebaseToken);
-      })
-      .catch(err => {
-        return err;
-      });
-  }
-
-  const join = (owner, ownerDeviceToken) => {
+  const join = (owner, ownerDeviceToken, uid) => {
     const name = email;
     const message = name + " Wants to join";
     firestore.collection("notification").doc("ss").set({
+      playerJoinUid: uid,
       owner: owner,
       title: message,
       description: "To Play Game",
@@ -136,7 +117,9 @@ function Sessions({ uid, email, token }) {
                 <p>Not Join</p>
               ) : (
                 <button
-                  onClick={() => join(session.owner, session.ownerDeviceToken)}
+                  onClick={() =>
+                    join(session.owner, session.ownerDeviceToken, uid)
+                  }
                   className="title"
                 >
                   Join
@@ -150,8 +133,8 @@ function Sessions({ uid, email, token }) {
           </div>
         ))}
         <button onClick={createSession}> New Session </button>
-        <button onClick={gettoken}> gettoken </button>
       </div>
+      <FirestoreMessage uid={uid} token={token} />
     </div>
   );
 }
