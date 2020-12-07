@@ -14,7 +14,7 @@ function Play({ uid }) {
   const getSessionUsers = uid => {
     firestore
       .collection("reactApp")
-      .doc("xfzHyVuw31fLjYanGwNbKkuZiwP2")
+      .doc(uid)
       .onSnapshot(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data().currentUser);

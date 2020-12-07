@@ -5,18 +5,20 @@ import {
   firestore,
 } from "../config/firebaseConfig";
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import FirestoreMessage from "./FirestoreMessage";
+import Play from "./Play";
 
 import "../css/style.css";
-import "../css/test.css";
+import "../css/sessions.css";
 
 function Sessions({ uid, email, token }) {
   const [sessions, setSessions] = useState([]);
-  // const [uid, setUid] = useState(0);
+  const [sessionorplay, setSessionOrPlay] = useState(true);
 
   useEffect(() => {
     async function getSession() {
@@ -34,7 +36,7 @@ function Sessions({ uid, email, token }) {
     async function createSes() {
       const data = {
         owner: uid,
-        session: email,
+        session: uid,
         ownerDeviceToken: token,
         users: [uid],
         currentUser: uid,
@@ -47,6 +49,7 @@ function Sessions({ uid, email, token }) {
       console.log(result);
     }
     createSes();
+    setSessionOrPlay(false);
   }
 
   const join = (owner, ownerDeviceToken, uid) => {
@@ -99,42 +102,43 @@ function Sessions({ uid, email, token }) {
   }
 
   return (
-    <div className="sessionPage">
-      <h2>Session</h2>
-      <Button onClick={logout}> Logout </Button>
-      {/* <Container className="center-column">
-        <Row>
-          <Button onClick={() => join()}>Join</Button>
-          <h5>simon session</h5>
-        </Row>
-      </Container> */}
-
-      <div className="col">
-        {sessions.map(session => (
-          <div className="content">
-            <div className="join">
-              {uid === session.owner ? (
-                <p>Not Join</p>
-              ) : (
-                <button
-                  onClick={() =>
-                    join(session.owner, session.ownerDeviceToken, uid)
-                  }
-                  className="title"
-                >
-                  Join
-                </button>
-              )}
-            </div>
-            <div className="box">
-              <p className="detail"> {session.owner} </p>
-              <p className="detail">{session.session}</p>
-            </div>
+    <div>
+      {sessionorplay ? (
+        <div className="sessionPage">
+          <h2>Session</h2>
+          <Button onClick={logout}> Logout </Button>
+          <div className="col">
+            {sessions.map(session => (
+              <div className="content">
+                <div className="join">
+                  {uid === session.owner ? (
+                    <p>Not Join</p>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        join(session.owner, session.ownerDeviceToken, uid)
+                      }
+                      className="title"
+                    >
+                      Join
+                    </button>
+                  )}
+                </div>
+                <div className="box">
+                  <p className="detail"> {session.owner} </p>
+                  <p className="detail">{session.session}</p>
+                </div>
+              </div>
+            ))}
+            <button onClick={createSession}> New Session </button>
           </div>
-        ))}
-        <button onClick={createSession}> New Session </button>
-      </div>
-      <FirestoreMessage uid={uid} token={token} />
+        </div>
+      ) : (
+        <div>
+          <Play uid={uid} />
+          <FirestoreMessage uid={uid} token={token} />
+        </div>
+      )}
     </div>
   );
 }

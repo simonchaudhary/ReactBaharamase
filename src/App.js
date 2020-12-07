@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Components
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
-import Play from "./component/Play";
 
 import {
   requestFirebaseNotificationPermission,
@@ -50,15 +49,16 @@ function App() {
   }
 
   if (!user) {
-    return <Registration />;
+    return (
+      <div>
+        <Registration />;
+      </div>
+    );
   } else {
     return (
-      <Router>
-        <div>
-          <Sessions uid={uid} email={email} token={token} />
-          <Play uid={uid} />
-        </div>
-      </Router>
+      <div>
+        <Sessions uid={uid} email={email} token={token} />
+      </div>
     );
   }
 }
