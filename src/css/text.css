@@ -1,0 +1,25 @@
+.text_bold {
+  text-decoration: none !important;
+  outline: none !important;
+  font-family: "Carter One", sans-serif;
+  font-size: large;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
+    -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2,
+    0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
+  color: #fff !important;
+}
+
+.text_medium {
+  text-decoration: none !important;
+  outline: none !important;
+  font-family: "Carter One", sans-serif;
+  font-size: small;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
+    -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2,
+    0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
+  color: #fff !important;
+}

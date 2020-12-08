@@ -3,11 +3,13 @@ import axios from "axios";
 
 import { firestore } from "../config/firebaseConfig";
 import { Button } from "react-bootstrap";
+import { BiArrowBack } from "react-icons/bi";
 
 import "../css/play.css";
+import "../css/text.css";
 
 function Play({ uid }) {
-  console.log("Play page " + uid);
+  console.log("Play page ", uid);
   const [currentPlayer, setCurrentPlayer] = useState("11");
   const [users, setUsers] = useState([]);
 
@@ -40,28 +42,53 @@ function Play({ uid }) {
     return result;
   };
 
+  const test = () => {
+    alert("test");
+  };
+
   return (
     <div>
       <div className="play_container">
-        <h5>Current Player {currentPlayer}</h5>
-        {/* <h5>Uid {uid}</h5> */}
-        <div className="play_table">
-          {users.map((user, index) => (
-            <div className="user_card">
-              <p className="user_name">{user}</p>
-              {user === uid ? (
-                [
-                  currentPlayer === user ? (
-                    <Button onClick={() => turn()}> Turn</Button>
-                  ) : (
-                    <p>not my turn</p>
-                  ),
-                ]
-              ) : (
-                <p></p>
-              )}
+        <div className="play_header">
+          <div className="play_header_left">
+            <BiArrowBack />
+          </div>
+          <div className="play_header_center">
+            <h3>Your Turn</h3>
+          </div>
+          <div className="play_header_right">
+            <div className="play_header_right_balance">
+              <p className="text_bold">Balance</p>
+              <p className="text_medium">$ 120</p>
             </div>
-          ))}
+          </div>
+        </div>
+        <div className="play_body">
+          <div className="play_table_border">
+            <div className="play_table">
+              {/* {users.map((user, index) => (
+                <div className="user_card">
+                  <p className="user_name">{user}</p>
+                  {user === uid ? (
+                    [
+                      currentPlayer === user ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
+                </div>
+              ))} */}
+            </div>
+          </div>
+        </div>
+        <div className="play_footer">
+          <button class="game-button red" onClick={() => test()}>
+            End Betting
+          </button>
         </div>
       </div>
     </div>

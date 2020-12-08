@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState();
 
   // new way
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     isUserLogin();
