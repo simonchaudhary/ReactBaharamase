@@ -18,12 +18,12 @@
   padding-left: 20px;
 }
 .play_header_center {
-  flex: 3;
+  flex: 2;
   text-align: center;
   text-decoration: none !important;
   outline: none !important;
   font-family: "Carter One", sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.5em;
   letter-spacing: 0.1em;
   text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
@@ -68,21 +68,39 @@
   background-image: url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg);
 }
 .play_table {
+  position: relative;
   width: 70.5vw;
   height: 67vh;
   border-radius: 50vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
   box-sizing: border-box;
   background-size: 100% 100%;
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
   background-image: url(https://i.pinimg.com/originals/20/fe/d6/20fed66c2bb51531210bff6a560cf13b.jpg);
 }
 
-.user_card {
-  width: 100px;
-  height: 100px;
+.user_card_1 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: -20px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.user_card_2 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%);
   background-color: limegreen;
   display: flex;
   flex-direction: column;
@@ -90,7 +108,87 @@
   justify-content: space-evenly;
 }
 
-.user_card .user_name {
+.user_card_3 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 30px;
+  transform: translate(-50%, -50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.user_card_4 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  right: -50px;
+  transform: translate(-50%, -50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.user_card_5 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: -20px;
+  right: 50px;
+  transform: translate(-50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.user_card_6 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -20px;
+  right: 50px;
+  transform: translate(-50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.user_card_7 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -20px;
+  left: 140px;
+  transform: translate(-50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user_card_8 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: -20px;
+  left: 140px;
+  transform: translate(-50%);
+  background-color: limegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user_card_1 .user_name {
   width: 150px;
   text-align: center;
   white-space: nowrap;
@@ -104,20 +202,21 @@
 
 /* custom button */
 .game-button {
+  height: 40px;
   position: relative;
   top: 0;
   cursor: pointer;
   text-decoration: none !important;
   outline: none !important;
   font-family: "Carter One", sans-serif;
-  font-size: 20px;
-  line-height: 1.5em;
+  font-size: 16px;
+  line-height: 1em;
+  margin-top: 15px;
   letter-spacing: 0.1em;
   text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
     -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2,
     0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
   border: none;
-  margin: 10px;
   background: repeating-linear-gradient(
     45deg,
     #3ebbf7,
@@ -129,7 +228,7 @@
   border-top: 3px solid rgba(255, 255, 255, 0.3);
   color: #fff !important;
   border-radius: 8px;
-  padding: 8px 15px 10px;
+  padding: 4px 15px 10px;
   box-shadow: 0 6px 0 #266b91, 0 8px 1px 1px rgba(0, 0, 0, 0.3),
     0 10px 0 5px #12517d, 0 12px 0 5px #1a6b9a, 0 15px 0 5px #0c405e,
     0 15px 1px 6px rgba(0, 0, 0, 0.3);
@@ -187,5 +286,32 @@
   .play_table {
     width: 67vw;
     height: 70.5vh;
+  }
+  /* .play_table_border {
+    transform: rotate(0deg);
+  } */
+  .user_card_5 {
+    bottom: 80px;
+    right: -50px;
+    transform: translate(-50%);
+    background-color: limegreen;
+  }
+  .user_card_6 {
+    top: 80px;
+    right: -50px;
+    transform: translate(-50%);
+    background-color: limegreen;
+  }
+  .user_card_8 {
+    bottom: 80px;
+    left: 30px;
+    transform: translate(-50%);
+    background-color: limegreen;
+  }
+  .user_card_7 {
+    top: 80px;
+    left: 30px;
+    transform: translate(-50%);
+    background-color: limegreen;
   }
 }

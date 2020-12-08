@@ -12,6 +12,7 @@ function Play({ uid }) {
   console.log("Play page ", uid);
   const [currentPlayer, setCurrentPlayer] = useState("11");
   const [users, setUsers] = useState([]);
+  const [noofPlayers, setNoOfPlayers] = useState(2);
 
   const getSessionUsers = uid => {
     firestore
@@ -63,10 +64,48 @@ function Play({ uid }) {
             </div>
           </div>
         </div>
-        <div className="play_body">
-          <div className="play_table_border">
+        <div className="play_body"></div>
+        <div className="play_footer">
+          <button class="game-button red" onClick={() => test()}>
+            End Betting
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Play;
+
+{
+  /*
+<div className="play_table_border">
             <div className="play_table">
-              {/* {users.map((user, index) => (
+              <div className="user_card_1">
+                <p>1</p>
+              </div>
+              <div className="user_card_2">
+                <p>2</p>
+              </div>
+              <div className="user_card_3">
+                <p>3</p>
+              </div>
+              <div className="user_card_4">
+                <p>4</p>
+              </div>
+              <div className="user_card_5">
+                <p>5</p>
+              </div>
+              <div className="user_card_6">
+                <p>6</p>
+              </div>
+              <div className="user_card_7">
+                <p>7</p>
+              </div>
+              <div className="user_card_8">
+                <p>8</p>
+              </div>
+              {users.map((user, index) => (
                 <div className="user_card">
                   <p className="user_name">{user}</p>
                   {user === uid ? (
@@ -81,18 +120,7 @@ function Play({ uid }) {
                     <p></p>
                   )}
                 </div>
-              ))} */}
+              ))} 
             </div>
-          </div>
-        </div>
-        <div className="play_footer">
-          <button class="game-button red" onClick={() => test()}>
-            End Betting
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+          </div>*/
 }
-
-export default Play;
