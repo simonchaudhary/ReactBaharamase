@@ -21,6 +21,7 @@ function FirestoreMessage({ uid, token }) {
   const modalAccept = async () => {
     deleteNotification();
     setIsOpen(!isOpen);
+    // USER ADDED TO SESSIOIN ON ACCEPT
     const data = {
       uID: playerJoinUid,
     };
@@ -30,11 +31,20 @@ function FirestoreMessage({ uid, token }) {
       data
     );
     console.log(result);
+    firestore.collection("enter").doc("play").set({
+      sessionOwner: sessionOwner,
+      join: "done",
+    });
   };
 
   function modalCancel() {
     deleteNotification();
     setIsOpen(!isOpen);
+    firestore.collection("notification").doc("reject").set({
+      playerUid: playerJoinUid,
+      sessionOwner: sessionOwner,
+      reject: true,
+    });
   }
 
   const deleteNotification = () => {

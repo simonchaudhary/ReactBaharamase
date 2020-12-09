@@ -81,6 +81,22 @@
   background-image: url(https://i.pinimg.com/originals/20/fe/d6/20fed66c2bb51531210bff6a560cf13b.jpg);
 }
 
+.user_card_error {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .user_card_1 {
   position: absolute;
   width: 80px;

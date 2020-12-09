@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import FirestoreMessage from "./FirestoreMessage";
+import RejectNotification from "./RejectNotification";
 import Play from "./Play";
 
 import "../css/style.css";
@@ -20,7 +21,17 @@ function Sessions({ uid, email, token }) {
   const [sessions, setSessions] = useState([]);
   const [sessionorplay, setSessionOrPlay] = useState(true);
 
+  // when click join button then session owner is
+  const [sessionOwner, setSessionOwner] = useState();
+  const [sessionID, setSessionID] = useState();
+
   useEffect(() => {
+    alert("check use effect");
+    checkUserInSession();
+  }, []);
+
+  useEffect(() => {
+    // get session
     async function getSession() {
       const result = await axios.get(
         "https://us-central1-bahramasefirebase.cloudfunctions.net/session"
@@ -31,6 +42,22 @@ function Sessions({ uid, email, token }) {
     }
     getSession();
   }, []);
+
+  const checkUserInSession = () => {
+    alert("checkuser ");
+    firestore
+      .collection("enter")
+      .doc("play")
+      .onSnapshot(function (doc) {
+        if (doc.exists) {
+          alert("session id", doc.data().sessionOwner);
+          setSessionID(doc.data().sessionOwner);
+          setSessionOrPlay(false);
+        } else {
+          console.log("nothing here");
+        }
+      });
+  };
 
   function createSession() {
     async function createSes() {
@@ -49,10 +76,13 @@ function Sessions({ uid, email, token }) {
       console.log(result);
     }
     createSes();
+    setSessionID(uid);
     setSessionOrPlay(false);
   }
 
   const join = (owner, ownerDeviceToken, uid) => {
+    // set join press session owner id
+    setSessionOwner(owner);
     const name = email;
     const message = name + " Wants to join";
     firestore.collection("notification").doc("ss").set({
@@ -132,10 +162,11 @@ function Sessions({ uid, email, token }) {
             ))}
             <button onClick={createSession}> New Session </button>
           </div>
+          <RejectNotification uid={uid} />
         </div>
       ) : (
         <div>
-          <Play uid={uid} />
+          <Play sessionID={sessionID} uid={uid} />
           <FirestoreMessage uid={uid} token={token} />
         </div>
       )}
