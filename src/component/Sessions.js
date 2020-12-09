@@ -26,7 +26,6 @@ function Sessions({ uid, email, token }) {
   const [sessionID, setSessionID] = useState();
 
   useEffect(() => {
-    alert("check use effect");
     checkUserInSession();
   }, []);
 
@@ -44,13 +43,11 @@ function Sessions({ uid, email, token }) {
   }, []);
 
   const checkUserInSession = () => {
-    alert("checkuser ");
     firestore
       .collection("enter")
       .doc("play")
       .onSnapshot(function (doc) {
         if (doc.exists) {
-          alert("session id", doc.data().sessionOwner);
           setSessionID(doc.data().sessionOwner);
           setSessionOrPlay(false);
         } else {
