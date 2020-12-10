@@ -39,7 +39,8 @@ function Play({ sessionID, uid }) {
 
   const turn = async () => {
     const result = await axios.put(
-      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/currentUser/xfzHyVuw31fLjYanGwNbKkuZiwP2"
+      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/currentUser/" +
+        sessionID
     );
     console.log(result);
     return result;
@@ -57,7 +58,7 @@ function Play({ sessionID, uid }) {
             <BiArrowBack />
           </div>
           <div className="play_header_center">
-            <h3>Your Turn</h3>
+            <h3>{currentPlayer}</h3>
           </div>
           <div className="play_header_right">
             <div className="play_header_right_balance">
@@ -80,9 +81,31 @@ function Play({ sessionID, uid }) {
               <div className="play_table">
                 <div className="user_card_1">
                   <p>{users[0]}</p>
+                  {users[0] === uid ? (
+                    [
+                      currentPlayer === users[0] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_2">
                   <p>{users[1]}</p>
+                  {users[1] === uid ? (
+                    [
+                      currentPlayer === users[1] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </div>
             </div>
@@ -91,12 +114,45 @@ function Play({ sessionID, uid }) {
               <div className="play_table">
                 <div className="user_card_1">
                   <p>{users[0]}</p>
+                  {users[0] === uid ? (
+                    [
+                      currentPlayer === users[0] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_6">
                   <p>{users[1]}</p>
+                  {users[1] === uid ? (
+                    [
+                      currentPlayer === users[1] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_7">
                   <p>{users[2]}</p>
+                  {users[2] === uid ? (
+                    [
+                      currentPlayer === users[2] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </div>
             </div>

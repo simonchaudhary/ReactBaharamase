@@ -31,7 +31,8 @@ function FirestoreMessage({ uid, token }) {
       data
     );
     console.log(result);
-    firestore.collection("enter").doc("play").set({
+    firestore.collection("enter").doc(playerJoinUid).set({
+      playerUid: playerJoinUid,
       sessionOwner: sessionOwner,
       join: "done",
     });

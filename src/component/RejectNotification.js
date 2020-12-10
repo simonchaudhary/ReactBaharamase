@@ -27,9 +27,8 @@ function RejectNotification({ uid }) {
       .doc("reject")
       .onSnapshot(function (doc) {
         if (doc.exists) {
-          setIsOpen(!isOpen);
-
-          if (uid === doc.data().sessionOwner.playerUid) {
+          if (uid === doc.data().playerUid) {
+            setIsOpen(!isOpen);
             setState(prevState => {
               return {
                 title: doc.data().sessionOwner + " Reject your Request",

@@ -26,8 +26,8 @@ function Sessions({ uid, email, token }) {
   const [sessionID, setSessionID] = useState();
 
   useEffect(() => {
-    checkUserInSession();
-  }, []);
+    checkUserInSession(uid);
+  }, [uid]);
 
   useEffect(() => {
     // get session
@@ -42,14 +42,21 @@ function Sessions({ uid, email, token }) {
     getSession();
   }, []);
 
-  const checkUserInSession = () => {
+  const checkUserInSession = uid => {
     firestore
       .collection("enter")
-      .doc("play")
+      .doc(uid)
       .onSnapshot(function (doc) {
         if (doc.exists) {
-          setSessionID(doc.data().sessionOwner);
-          setSessionOrPlay(false);
+          console.log("check user uid", uid);
+          console.log("check user player id", doc.data().playerUid);
+
+          if (uid === doc.data().playerUid) {
+            setSessionID(doc.data().sessionOwner);
+            setSessionOrPlay(false);
+          } else {
+            console.log("You didnot click button");
+          }
         } else {
           console.log("nothing here");
         }
