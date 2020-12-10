@@ -161,15 +161,59 @@ function Play({ sessionID, uid }) {
               <div className="play_table">
                 <div className="user_card_1">
                   <p>{users[0]}</p>
+                  {users[0] === uid ? (
+                    [
+                      currentPlayer === users[0] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_4">
                   <p>{users[1]}</p>
+                  {users[1] === uid ? (
+                    [
+                      currentPlayer === users[1] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_2">
                   <p>{users[2]}</p>
+                  {users[2] === uid ? (
+                    [
+                      currentPlayer === users[2] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_3">
                   <p>{users[3]}</p>
+                  {users[3] === uid ? (
+                    [
+                      currentPlayer === users[3] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </div>
             </div>
@@ -178,18 +222,73 @@ function Play({ sessionID, uid }) {
               <div className="play_table">
                 <div className="user_card_1">
                   <p>{users[0]}</p>
+                  {users[0] === uid ? (
+                    [
+                      currentPlayer === users[0] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_4">
                   <p>{users[1]}</p>
+                  {users[1] === uid ? (
+                    [
+                      currentPlayer === users[1] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_6">
                   <p>{users[2]}</p>
+                  {users[2] === uid ? (
+                    [
+                      currentPlayer === users[2] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_7">
                   <p>{users[3]}</p>
+                  {users[3] === uid ? (
+                    [
+                      currentPlayer === users[3] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_3">
                   <p>{users[4]}</p>
+                  {users[4] === uid ? (
+                    [
+                      currentPlayer === users[4] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </div>
             </div>
@@ -198,21 +297,87 @@ function Play({ sessionID, uid }) {
               <div className="play_table">
                 <div className="user_card_1">
                   <p>{users[0]}</p>
+                  {users[0] === uid ? (
+                    [
+                      currentPlayer === users[0] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_5">
                   <p>{users[1]}</p>
+                  {users[1] === uid ? (
+                    [
+                      currentPlayer === users[1] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_6">
                   <p>{users[2]}</p>
+                  {users[2] === uid ? (
+                    [
+                      currentPlayer === users[2] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_2">
                   <p>{users[3]}</p>
+                  {users[3] === uid ? (
+                    [
+                      currentPlayer === users[3] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_7">
                   <p>{users[4]}</p>
+                  {users[4] === uid ? (
+                    [
+                      currentPlayer === users[4] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
                 <div className="user_card_8">
                   <p>{users[5]}</p>
+                  {users[5] === uid ? (
+                    [
+                      currentPlayer === users[5] ? (
+                        <Button onClick={() => turn()}> Turn</Button>
+                      ) : (
+                        <p>not my turn</p>
+                      ),
+                    ]
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </div>
             </div>
