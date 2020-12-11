@@ -99,8 +99,8 @@
 
 .user_card_1 {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 250px;
+  height: 150px;
   bottom: -20px;
   left: 50%;
   transform: translate(-50%);

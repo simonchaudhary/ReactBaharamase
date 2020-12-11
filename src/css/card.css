@@ -1,0 +1,41 @@
+.list_card {
+  display: flex;
+}
+.card_container {
+  position: relative;
+  width: 60px;
+  height: 80px;
+  background-color: white;
+  border: 1px sollid lightgrey;
+  -webkit-box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.46);
+  box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.46);
+  border-radius: 4px;
+}
+
+.top_Left {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: smaller;
+  font-weight: 600;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.bottom_right {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: smaller;
+  font-weight: 600;
+  transform: rotate(180deg);
+}
+
+.red {
+  color: red;
+}

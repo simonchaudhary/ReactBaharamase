@@ -31,16 +31,26 @@ function Sessions({ uid, email, token }) {
 
   useEffect(() => {
     // get session
-    async function getSession() {
-      const result = await axios.get(
-        "https://us-central1-bahramasefirebase.cloudfunctions.net/session"
-      );
-      console.log(result.data.data);
-      setSessions(result.data.data);
-      return result;
-    }
-    getSession();
-  }, []);
+    // async function getSession() {
+    //   const result = await axios.get(
+    //     "https://us-central1-bahramasefirebase.cloudfunctions.net/session/buw5XyrBAKSk0X2swNxr48tA2O03%27s"
+    //   );
+    //   console.log("get session");
+    //   console.log(result.data);
+    //   // setSessions(result.data.data);
+    //   return result;
+    // }
+    // getSession();
+
+    console.log("useeffect get session");
+    firestore.collection("sessions").onSnapshot(snapshot => {
+      const tempDoc = snapshot.docs.map(doc => {
+        return { id: doc.id, ...doc.data() };
+      });
+      console.log(tempDoc);
+      setSessions(tempDoc);
+    });
+  }, [uid]);
 
   const checkUserInSession = uid => {
     firestore
@@ -67,10 +77,21 @@ function Sessions({ uid, email, token }) {
     async function createSes() {
       const data = {
         owner: uid,
+        gameType: "3cp",
         session: uid,
         ownerDeviceToken: token,
-        users: [uid],
+        users: ["BOT", uid],
+        cardsInPlay: "initVal",
         currentUser: uid,
+        blindWager: 0,
+        seenWager: 0,
+        winner: null,
+        showOK: false,
+        otherPlayersTokens: null,
+        showAlert: false,
+        dealHands: true,
+        totalBetAmount: 0,
+        playType: "playType",
       };
       const result = await axios.post(
         "https://us-central1-bahramasefirebase.cloudfunctions.net/session/" +

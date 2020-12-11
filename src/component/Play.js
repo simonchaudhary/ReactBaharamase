@@ -4,6 +4,7 @@ import axios from "axios";
 import { firestore } from "../config/firebaseConfig";
 import { Button } from "react-bootstrap";
 import { BiArrowBack } from "react-icons/bi";
+import Card from "./Card";
 
 import "../css/play.css";
 import "../css/text.css";
@@ -16,14 +17,11 @@ function Play({ sessionID, uid }) {
 
   const getSessionUsers = uid => {
     firestore
-      .collection("reactApp")
+      .collection("sessions")
       .doc(sessionID)
       .onSnapshot(function (doc) {
         if (doc.exists) {
-          console.log("Document data:", doc.data().currentUser);
-          console.log("User : ", doc.data().users);
           setCurrentPlayer(doc.data().currentUser);
-          console.log("length", doc.data().users.length);
           setNoOfPlayers(doc.data().users.length);
           setUsers(doc.data().users);
         } else {
@@ -67,6 +65,7 @@ function Play({ sessionID, uid }) {
             </div>
           </div>
         </div>
+
         <div className="play_body">
           {noofPlayers === 1 ? (
             <div className="play_table_border">
@@ -80,10 +79,17 @@ function Play({ sessionID, uid }) {
             <div className="play_table_border">
               <div className="play_table">
                 <div className="user_card_1">
-                  <p>{users[0]}</p>
-                  {users[0] === uid ? (
+                  <Card
+                    sessionID={sessionID}
+                    uid={uid}
+                    playerUid={users[1]}
+                    sequence="2"
+                    color="heart"
+                  />
+                  <p>{users[1]}</p>
+                  {users[1] === uid ? (
                     [
-                      currentPlayer === users[0] ? (
+                      currentPlayer === users[1] ? (
                         <Button onClick={() => turn()}> Turn</Button>
                       ) : (
                         <p>not my turn</p>
@@ -94,10 +100,17 @@ function Play({ sessionID, uid }) {
                   )}
                 </div>
                 <div className="user_card_2">
-                  <p>{users[1]}</p>
-                  {users[1] === uid ? (
+                  <Card
+                    sessionID={sessionID}
+                    uid={uid}
+                    playerUid={users[0]}
+                    sequence="21"
+                    color="heart"
+                  />
+                  <p>{users[0]}</p>
+                  {users[0] === uid ? (
                     [
-                      currentPlayer === users[1] ? (
+                      currentPlayer === users[0] ? (
                         <Button onClick={() => turn()}> Turn</Button>
                       ) : (
                         <p>not my turn</p>
@@ -113,6 +126,7 @@ function Play({ sessionID, uid }) {
             <div className="play_table_border">
               <div className="play_table">
                 <div className="user_card_1">
+                  <Card sequence="1" color="diamond" />
                   <p>{users[0]}</p>
                   {users[0] === uid ? (
                     [
@@ -406,51 +420,3 @@ function Play({ sessionID, uid }) {
 }
 
 export default Play;
-
-{
-  /*
-<div className="play_table_border">
-            <div className="play_table">
-              <div className="user_card_1">
-                <p>1</p>
-              </div>
-              <div className="user_card_2">
-                <p>2</p>
-              </div>
-              <div className="user_card_3">
-                <p>3</p>
-              </div>
-              <div className="user_card_4">
-                <p>4</p>
-              </div>
-              <div className="user_card_5">
-                <p>5</p>
-              </div>
-              <div className="user_card_6">
-                <p>6</p>
-              </div>
-              <div className="user_card_7">
-                <p>7</p>
-              </div>
-              <div className="user_card_8">
-                <p>8</p>
-              </div>
-              {users.map((user, index) => (
-                <div className="user_card">
-                  <p className="user_name">{user}</p>
-                  {user === uid ? (
-                    [
-                      currentPlayer === user ? (
-                        <Button onClick={() => turn()}> Turn</Button>
-                      ) : (
-                        <p>not my turn</p>
-                      ),
-                    ]
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
-              ))} 
-            </div>
-          </div>*/
-}
