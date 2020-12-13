@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Components
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
+import LoadingFull from "./component/LoadingFull";
 
 import {
   requestFirebaseNotificationPermission,
@@ -25,14 +26,16 @@ function App() {
   }, []);
 
   function isUserLogin() {
+    setUser("null");
     auth.onAuthStateChanged(user => {
       if (user) {
         console.log(user);
-        setUser(user);
         setUid(user.uid);
         setEmail(user.email);
+        setUser("session");
       } else {
         console.log("register logged out");
+        setUser("register");
       }
     });
   }
@@ -48,18 +51,22 @@ function App() {
       });
   }
 
-  if (!user) {
+  if (user === "null") {
+    return <LoadingFull />;
+  } else if (user === "register") {
     return (
       <div>
         <Registration />;
       </div>
     );
-  } else {
+  } else if (user === "session") {
     return (
       <div>
         <Sessions uid={uid} email={email} token={token} />
       </div>
     );
+  } else {
+    return <LoadingFull />;
   }
 }
 

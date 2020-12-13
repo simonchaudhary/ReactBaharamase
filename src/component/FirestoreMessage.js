@@ -22,6 +22,13 @@ function FirestoreMessage({ uid, token }) {
     deleteNotification();
     setIsOpen(!isOpen);
     // USER ADDED TO SESSIOIN ON ACCEPT
+
+    console.log(
+      "playerjoion uid",
+      playerJoinUid,
+      "session owner",
+      sessionOwner
+    );
     const data = {
       uID: playerJoinUid,
     };

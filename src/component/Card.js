@@ -10,26 +10,41 @@ import "../css/card.css";
 
 function Card({ sessionID, uid, playerUid, sequence, color }) {
   console.log("Cards container ", sessionID, uid, playerUid);
-  const [cards, setCards] = useState();
+  const [cards, setCards] = useState("null");
 
   useEffect(() => {
     console.log("card use effect");
-    async function getCards() {
-      const result = await axios.get(
+    // async function getCards() {
+    //   const result = await axios.get(
+    //     "https://us-central1-bahramasefirebase.cloudfunctions.net/session/" +
+    //       sessionID +
+    //       "/user-hand/" +
+    //       playerUid
+    //   );
+    //   // console.log(result);
+    //   console.log(result.data.data.cards);
+    //   setCards(result.data.data.cards);
+    // }
+    // getCards();
+    axios
+      .get(
         "https://us-central1-bahramasefirebase.cloudfunctions.net/session/" +
           sessionID +
           "/user-hand/" +
           playerUid
-      );
-      console.log(result.data.data.cards);
-      setCards(result.data.data.cards);
-    }
-    getCards();
+      )
+      .then(res => {
+        console.log(res.data.data.cards);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   return (
     <div className="list_card">
-      {cards.map(card => (
+      <p>loading</p>
+      {/* {cards.map(card => (
         <div className="card_container">
           <div className="top_Left">{card.sequence}</div>
           <div className="center">
@@ -45,7 +60,7 @@ function Card({ sessionID, uid, playerUid, sequence, color }) {
           </div>
           <div className="bottom_right">{card.sequence}</div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

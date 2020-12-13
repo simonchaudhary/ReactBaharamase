@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { auth, firestore } from "../config/firebaseConfig";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/registration.css";
+
+import axios from "axios";
 
 function Registration() {
   const [email, setEmail] = useState("");
@@ -12,28 +16,49 @@ function Registration() {
 
   const onRegister = e => {
     e.preventDefault();
-    alert("register");
-    alert("email: " + email + " password" + password);
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(cred => {
-        // save to firebase
-        firestore
-          .collection("ReactUsers")
-          .add({
-            email: email,
-            password: password,
-          })
-          .then(cred => {
-            console.log("save to firebase");
-          })
-          .catch(err => {
-            console.log("firestore error " + err);
-          });
+    alert("check");
+    const data = {
+      uID: "Gsl3stD48tZsXyS7OrXx4sq2nT13",
+    };
+
+    axios
+      .put(
+        "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
+          "erLuS3X5J7fojlmKwAsYCT46UHj1",
+        data
+      )
+      .then(doc => {
+        console.log(doc);
       })
-      .catch(err => {
-        console.log("error " + err);
+      .catch(error => {
+        console.log("error", error);
       });
+    // console.log(result);
+
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then(cred => {
+    //     console.log("User is register", cred.user.uid);
+    //     // save to firebase
+    //     firestore
+    //       .collection("users")
+    //       .doc(cred.user.uid)
+    //       .set({
+    //         email: email,
+    //         uid: cred.user.uid,
+    //         password: password,
+    //       })
+    //       .then(cred => {
+    //         console.log("save to firebase");
+    //       })
+    //       .catch(err => {
+    //         console.log("firestore errorss " + err);
+    //       });
+    //   })
+    //   .catch(err => {
+    //     console.log("error " + err);
+    //     notify(err.toString());
+    //   });
   };
 
   const onLogin = e => {
@@ -41,10 +66,11 @@ function Registration() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(cred => {
-        console.log("User is Login");
+        console.log("User is Login", cred.user.uid);
       })
       .catch(err => {
         console.log("error " + err);
+        notify(err.toString());
       });
   };
 
@@ -55,8 +81,11 @@ function Registration() {
     setIsRegisterScreen(true);
   };
 
+  const notify = message => toast(message);
+
   return (
     <div className="registerPage">
+      <ToastContainer />
       {isRegisterScreen ? (
         <div className="container" id="register_container">
           <h2>Registration</h2>

@@ -18,6 +18,7 @@ import "../css/style.css";
 import "../css/sessions.css";
 
 function Sessions({ uid, email, token }) {
+  console.log("Session Page: ", "Uid ", uid, "email ", email, "token ", token);
   const [sessions, setSessions] = useState([]);
   const [sessionorplay, setSessionOrPlay] = useState(true);
 
