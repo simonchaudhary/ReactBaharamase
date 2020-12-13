@@ -126,7 +126,13 @@ function Play({ sessionID, uid }) {
             <div className="play_table_border">
               <div className="play_table">
                 <div className="user_card_1">
-                  <Card sequence="1" color="diamond" />
+                  <Card
+                    sessionID={sessionID}
+                    uid={uid}
+                    playerUid={users[0]}
+                    sequence="21"
+                    color="heart"
+                  />
                   <p>{users[0]}</p>
                   {users[0] === uid ? (
                     [
@@ -141,6 +147,13 @@ function Play({ sessionID, uid }) {
                   )}
                 </div>
                 <div className="user_card_6">
+                  <Card
+                    sessionID={sessionID}
+                    uid={uid}
+                    playerUid={users[1]}
+                    sequence="21"
+                    color="heart"
+                  />
                   <p>{users[1]}</p>
                   {users[1] === uid ? (
                     [
@@ -155,6 +168,13 @@ function Play({ sessionID, uid }) {
                   )}
                 </div>
                 <div className="user_card_7">
+                  <Card
+                    sessionID={sessionID}
+                    uid={uid}
+                    playerUid={users[2]}
+                    sequence="21"
+                    color="heart"
+                  />
                   <p>{users[2]}</p>
                   {users[2] === uid ? (
                     [

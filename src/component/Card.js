@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { firestore } from "../config/firebaseConfig";
+
 import { BsHeartFill } from "react-icons/bs";
 import { BsDiamondFill } from "react-icons/bs";
 import { ImSpades } from "react-icons/im";
@@ -10,7 +12,7 @@ import "../css/card.css";
 
 function Card({ sessionID, uid, playerUid, sequence, color }) {
   console.log("Cards container ", sessionID, uid, playerUid);
-  const [cards, setCards] = useState("null");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     console.log("card use effect");
@@ -26,25 +28,26 @@ function Card({ sessionID, uid, playerUid, sequence, color }) {
     //   setCards(result.data.data.cards);
     // }
     // getCards();
-    axios
-      .get(
-        "https://us-central1-bahramasefirebase.cloudfunctions.net/session/" +
-          sessionID +
-          "/user-hand/" +
-          playerUid
-      )
-      .then(res => {
-        console.log(res.data.data.cards);
-      })
-      .catch(error => {
-        console.log(error);
+
+    firestore
+      .collection("sessions")
+      .doc(sessionID)
+      .collection("userHands")
+      .doc(playerUid)
+      .onSnapshot(function (doc) {
+        if (doc.exists) {
+          console.log("cardsssss", doc.data().cards);
+          setCards(doc.data().cards);
+        } else {
+          console.log("nothing here");
+        }
       });
-  }, []);
+  }, [playerUid]);
 
   return (
     <div className="list_card">
-      <p>loading</p>
-      {/* {cards.map(card => (
+      {/* <p>loading</p> */}
+      {cards.map(card => (
         <div className="card_container">
           <div className="top_Left">{card.sequence}</div>
           <div className="center">
@@ -60,7 +63,7 @@ function Card({ sessionID, uid, playerUid, sequence, color }) {
           </div>
           <div className="bottom_right">{card.sequence}</div>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }

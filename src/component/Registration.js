@@ -16,49 +16,49 @@ function Registration() {
 
   const onRegister = e => {
     e.preventDefault();
-    alert("check");
-    const data = {
-      uID: "Gsl3stD48tZsXyS7OrXx4sq2nT13",
-    };
+    // alert("check");
+    // const data = {
+    //   uID: "Gsl3stD48tZsXyS7OrXx4sq2nT13",
+    // };
 
-    axios
-      .put(
-        "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
-          "erLuS3X5J7fojlmKwAsYCT46UHj1",
-        data
-      )
-      .then(doc => {
-        console.log(doc);
-      })
-      .catch(error => {
-        console.log("error", error);
-      });
+    // axios
+    //   .put(
+    //     "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
+    //       "erLuS3X5J7fojlmKwAsYCT46UHj1",
+    //     data
+    //   )
+    //   .then(doc => {
+    //     console.log(doc);
+    //   })
+    //   .catch(error => {
+    //     console.log("error", error);
+    //   });
     // console.log(result);
 
-    // auth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(cred => {
-    //     console.log("User is register", cred.user.uid);
-    //     // save to firebase
-    //     firestore
-    //       .collection("users")
-    //       .doc(cred.user.uid)
-    //       .set({
-    //         email: email,
-    //         uid: cred.user.uid,
-    //         password: password,
-    //       })
-    //       .then(cred => {
-    //         console.log("save to firebase");
-    //       })
-    //       .catch(err => {
-    //         console.log("firestore errorss " + err);
-    //       });
-    //   })
-    //   .catch(err => {
-    //     console.log("error " + err);
-    //     notify(err.toString());
-    //   });
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+        console.log("User is register", cred.user.uid);
+        // save to firebase
+        firestore
+          .collection("users")
+          .doc(cred.user.uid)
+          .set({
+            email: email,
+            uid: cred.user.uid,
+            password: password,
+          })
+          .then(cred => {
+            console.log("save to firebase");
+          })
+          .catch(err => {
+            console.log("firestore errorss " + err);
+          });
+      })
+      .catch(err => {
+        console.log("error " + err);
+        notify(err.toString());
+      });
   };
 
   const onLogin = e => {
