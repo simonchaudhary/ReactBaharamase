@@ -1,16 +1,49 @@
 .registerPage {
+  position: relative;
   width: 100vw;
-  height: 100vh;
   display: grid;
   place-content: center;
-  background-color: #f8f8f8;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.register_background_bottom {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 300px;
+  height: 300px;
+  background-image: url("https://lh3.googleusercontent.com/proxy/Du26i9bc11cnaUdztcXdPOhxtIQ-O9Cn92ifI5e_ULb_J9dNK6CC91qfFFwbzFx19g7Rs_sVTP1DChY0r6WjNc1k-rJwaH6u0kPkhKc3_hi1WDC63i6o0orzFEOW7U-gwxpSFJtx");
+}
+.register_background_top {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 300px;
+  height: 300px;
+  transform: rotate(180deg);
+  background-image: url("https://lh3.googleusercontent.com/proxy/Du26i9bc11cnaUdztcXdPOhxtIQ-O9Cn92ifI5e_ULb_J9dNK6CC91qfFFwbzFx19g7Rs_sVTP1DChY0r6WjNc1k-rJwaH6u0kPkhKc3_hi1WDC63i6o0orzFEOW7U-gwxpSFJtx");
 }
 
 .container {
   width: 40vw;
-  background-color: white;
+  animation: animate 10s ease-in-out infinite;
   padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px;
+  border-radius: 10px;
+  background: linear-gradient(
+    270deg,
+    #ff5252,
+    #ffbe52,
+    #52ff60,
+    #52d7ff,
+    #c152ff
+  );
+  background-size: 1000% 1000%;
+
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
 }
 
 .register__footer {
@@ -36,11 +69,76 @@
   color: green;
 }
 
+/* container animatte */
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-color: #ffbe0b;
+  }
+  25% {
+    background-color: #fb5607;
+  }
+  50% {
+    background-color: #8338ec;
+  }
+  75% {
+    background-color: #3a86ff;
+  }
+  100% {
+    background-color: #ffbe0b;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .container {
     width: 80vw;
   }
   .register__footer {
     width: 80vw;
+  }
+
+  .register_background_bottom {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+  }
+  .register_background_top {
+    width: 200px;
+    height: 200px;
   }
 }

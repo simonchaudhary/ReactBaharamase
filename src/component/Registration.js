@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/registration.css";
+import "../css/button.css";
 
 import axios from "axios";
 
@@ -86,6 +87,9 @@ function Registration() {
   return (
     <div className="registerPage">
       <ToastContainer />
+      <div className="register_background_top"></div>
+      <div className="register_background_bottom"></div>
+      <div className="container_box"></div>
       {isRegisterScreen ? (
         <div className="container" id="register_container">
           <h2>Registration</h2>

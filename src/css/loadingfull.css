@@ -1,8 +1,61 @@
 .loading_full {
   width: 100vw;
   height: 100vh;
-  background-color: f8f8f8;
   display: grid;
+  background-color: white;
   place-items: center;
-  color: black;
+  color: white;
+  /* animation: animate 5s ease infinite; */
+}
+
+.loading_text {
+  font-size: 40px;
+  font-weight: 800;
+  animation: textanimate 5s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-color: #ffbe0b;
+  }
+  25% {
+    background-color: #fb5607;
+  }
+  50% {
+    background-color: #8338ec;
+  }
+  75% {
+    background-color: #3a86ff;
+  }
+  100% {
+    background-color: #ffbe0b;
+  }
+}
+
+@keyframes textanimate {
+  /* 0% {
+    font-weight: 800;
+  }
+  50% {
+    font-weight: 300;
+  }
+  100% {
+    font-weight: 800;
+  } */
+
+  0% {
+    color: #ffbe0b;
+  }
+  25% {
+    color: #fb5607;
+  }
+  50% {
+    color: #8338ec;
+  }
+  75% {
+    color: #3a86ff;
+  }
+  100% {
+    color: #ffbe0b;
+  }
 }

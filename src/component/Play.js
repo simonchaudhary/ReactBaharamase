@@ -7,6 +7,7 @@ import { BiArrowBack } from "react-icons/bi";
 import Card from "./Card";
 
 import "../css/play.css";
+import "../css/button.css";
 import "../css/text.css";
 
 function Play({ sessionID, uid }) {

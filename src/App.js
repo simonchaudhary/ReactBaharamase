@@ -50,7 +50,7 @@ function App() {
         return err;
       });
   }
-
+  // return <LoadingFull />;
   if (user === "null") {
     return <LoadingFull />;
   } else if (user === "register") {

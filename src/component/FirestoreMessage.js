@@ -5,6 +5,9 @@ import axios from "axios";
 
 import Modal from "react-modal";
 import "../css/modalstyle.css";
+import "../css/text.css";
+import "../css/button.css";
+import "../css/style.css";
 
 Modal.setAppElement("#root");
 
@@ -123,10 +126,15 @@ function FirestoreMessage({ uid, token }) {
         overlayClassName="myoverlay"
         closeTimeoutMS={1}
       >
-        <h2>{title}</h2>
+        <h2 className="text_medium">{title}</h2>
         <div className="row">
-          <Button onClick={modalCancel}>Cancel</Button>
-          <Button onClick={modalAccept}>Accept</Button>
+          <Button className="game-button red" onClick={modalCancel}>
+            Cancel
+          </Button>
+          <div className="horizontal_space"></div>
+          <Button className="game-button" onClick={modalAccept}>
+            Accept
+          </Button>
         </div>
       </Modal>
     </div>
