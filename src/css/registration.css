@@ -7,6 +7,7 @@
   height: 100vh;
   overflow: hidden;
   background-color: #f1f1f1;
+  color: white;
 }
 
 .register_background_bottom {
@@ -29,7 +30,7 @@
 
 .container {
   width: 40vw;
-  animation: animate 10s ease-in-out infinite;
+  /* animation: animate 10s ease-in-out infinite; */
   padding: 20px;
   border-radius: 20px;
   background: linear-gradient(
@@ -42,9 +43,9 @@
   );
   background-size: 1000% 1000%;
 
-  -webkit-animation: AnimationName 9s ease infinite;
-  -moz-animation: AnimationName 9s ease infinite;
-  animation: AnimationName 9s ease infinite;
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
   transition: 0.4s;
 }
 
@@ -148,5 +149,7 @@
   .register_background_top {
     width: 200px;
     height: 200px;
+    top: 0px;
+    left: 0px;
   }
 }

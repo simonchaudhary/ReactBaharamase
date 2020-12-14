@@ -112,7 +112,7 @@ function Registration() {
                 placeholder="Password"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="login_button" variant="primary" type="submit">
               Register
             </Button>
           </Form>
