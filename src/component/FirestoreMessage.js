@@ -126,7 +126,7 @@ function FirestoreMessage({ uid, token }) {
         overlayClassName="myoverlay"
         closeTimeoutMS={1}
       >
-        <h2 className="text_medium">{title}</h2>
+        <p className="title">{title}</p>
         <div className="row">
           <Button className="game-button red" onClick={modalCancel}>
             Cancel

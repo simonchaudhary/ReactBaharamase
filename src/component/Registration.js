@@ -92,7 +92,7 @@ function Registration() {
       <div className="container_box"></div>
       {isRegisterScreen ? (
         <div className="container" id="register_container">
-          <h2>Registration</h2>
+          <h3>Registration</h3>
           <Form onSubmit={onRegister}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -119,7 +119,7 @@ function Registration() {
         </div>
       ) : (
         <div className="container" id="login">
-          <h2>Login</h2>
+          <h3>Login</h3>
           <Form onSubmit={onLogin}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

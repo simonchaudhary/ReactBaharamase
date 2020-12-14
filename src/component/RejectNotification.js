@@ -5,6 +5,9 @@ import axios from "axios";
 
 import Modal from "react-modal";
 import "../css/modalstyle.css";
+import "../css/text.css";
+import "../css/button.css";
+import "../css/style.css";
 
 Modal.setAppElement("#root");
 
@@ -74,9 +77,11 @@ function RejectNotification({ uid }) {
         overlayClassName="myoverlay"
         closeTimeoutMS={1}
       >
-        <h2>{title}</h2>
+        <p className="title">{title}</p>
         <div className="row">
-          <Button onClick={modalAccept}>Ok</Button>
+          <Button className="game-button" onClick={modalAccept}>
+            Ok
+          </Button>
         </div>
       </Modal>
     </div>

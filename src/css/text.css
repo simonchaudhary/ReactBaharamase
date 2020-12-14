@@ -23,3 +23,16 @@
     0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
   color: #fff !important;
 }
+
+.title {
+  text-decoration: none !important;
+  outline: none !important;
+  font-family: "Carter One", sans-serif;
+  font-size: 40px;
+  line-height: 1.5em;
+  letter-spacing: 0.2em;
+  text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
+    -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2,
+    0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
+  color: #fff !important;
+}
