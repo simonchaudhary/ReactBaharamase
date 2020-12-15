@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/registration.css";
 import "../css/button.css";
+import "../css/style.css";
 
 import axios from "axios";
 
@@ -112,9 +113,10 @@ function Registration() {
                 placeholder="Password"
               />
             </Form.Group>
-            <Button className="login_button" variant="primary" type="submit">
+            <div className="vertical_space"></div>
+            <button className="login_button" type="submit">
               Register
-            </Button>
+            </button>
           </Form>
         </div>
       ) : (
@@ -139,9 +141,10 @@ function Registration() {
                 placeholder="Password"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <div className="vertical_space"></div>
+            <button className="login_button" type="submit">
               Login
-            </Button>
+            </button>
           </Form>
         </div>
       )}

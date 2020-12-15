@@ -64,12 +64,28 @@ function Sessions({ uid, email, token }) {
 
           if (uid === doc.data().playerUid) {
             setSessionID(doc.data().sessionOwner);
-            setSessionOrPlay(false);
+            // setSessionOrPlay(false);
+            checkSessionExists(doc.data().sessionOwner);
           } else {
             console.log("You didnot click button");
           }
         } else {
           console.log("nothing here");
+        }
+      });
+  };
+
+  const checkSessionExists = session_id => {
+    alert("check session exists", session_id);
+    firestore
+      .collection("sessions")
+      .doc(session_id)
+      .onSnapshot(function (doc) {
+        if (doc.exists) {
+          alert("Session exists enter to session ", sessionID);
+          setSessionOrPlay(false);
+        } else {
+          console.log("session not exists");
         }
       });
   };

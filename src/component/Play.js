@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Confetti from "react-confetti";
 
 import { firestore } from "../config/firebaseConfig";
 import { Button } from "react-bootstrap";
 import { BiArrowBack } from "react-icons/bi";
 import Card from "./Card";
+import DialogBox from "./DialogBox";
 
 import "../css/play.css";
 import "../css/button.css";
@@ -15,6 +17,10 @@ function Play({ sessionID, uid }) {
   const [currentPlayer, setCurrentPlayer] = useState("11");
   const [users, setUsers] = useState([]);
   const [noofPlayers, setNoOfPlayers] = useState(0);
+  // show Winner
+  const [showWinner, setShowWinner] = useState(false);
+  // window size
+  const size = useWindowSize();
 
   const getSessionUsers = uid => {
     firestore
@@ -45,12 +51,20 @@ function Play({ sessionID, uid }) {
     return result;
   };
 
-  const test = () => {
-    alert("test");
+  const endBetting = () => {
+    setShowWinner(true);
   };
 
   return (
     <div>
+      {showWinner === true ? (
+        <div>
+          <Confetti width={size.width} height={size.height} />
+          <DialogBox sessionID={sessionID} />
+        </div>
+      ) : (
+        <p></p>
+      )}
       <div className="play_container">
         <div className="play_header">
           <div className="play_header_left">
@@ -431,13 +445,45 @@ function Play({ sessionID, uid }) {
           )}
         </div>
         <div className="play_footer">
-          <button class="game-button red" onClick={() => test()}>
+          <button class="game-button red" onClick={() => endBetting()}>
             End Betting
           </button>
         </div>
       </div>
     </div>
   );
+}
+
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
 }
 
 export default Play;
