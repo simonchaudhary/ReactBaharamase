@@ -76,13 +76,11 @@ function Sessions({ uid, email, token }) {
   };
 
   const checkSessionExists = session_id => {
-    alert("check session exists", session_id);
     firestore
       .collection("sessions")
       .doc(session_id)
       .onSnapshot(function (doc) {
         if (doc.exists) {
-          alert("Session exists enter to session ", sessionID);
           setSessionOrPlay(false);
         } else {
           console.log("session not exists");
