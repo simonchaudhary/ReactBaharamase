@@ -55,6 +55,10 @@ function Play({ sessionID, uid }) {
     setShowWinner(true);
   };
 
+  const deal = () => {
+    alert("deal");
+  };
+
   return (
     <div>
       {showWinner === true ? (
@@ -80,7 +84,6 @@ function Play({ sessionID, uid }) {
             </div>
           </div>
         </div>
-
         <div className="play_body">
           {noofPlayers === 1 ? (
             <div className="play_table_border">
@@ -93,6 +96,11 @@ function Play({ sessionID, uid }) {
           ) : noofPlayers === 2 ? (
             <div className="play_table_border">
               <div className="play_table">
+                <div className="deal_container">
+                  <button class="game-button" onClick={() => deal()}>
+                    Deal
+                  </button>
+                </div>
                 <div className="user_card_1">
                   <Card
                     sessionID={sessionID}

@@ -81,6 +81,13 @@
   background-image: url(https://i.pinimg.com/originals/20/fe/d6/20fed66c2bb51531210bff6a560cf13b.jpg);
 }
 
+.deal_container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .user_card_error {
   position: absolute;
   width: 120px;
