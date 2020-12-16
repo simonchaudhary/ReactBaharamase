@@ -3,3 +3,86 @@
   height: 100vh;
   background-image: url(https://i.pinimg.com/originals/37/d5/1c/37d51c1417f7ad37972ac44257b312c4.jpg);
 }
+
+.sixmover_header {
+  width: 100vw;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+.sixmover_header_left {
+  flex: 1;
+  padding-left: 20px;
+}
+.sixmover_header_center {
+  flex: 2;
+  text-align: center;
+  text-decoration: none !important;
+  outline: none !important;
+  font-family: "Carter One", sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2,
+    -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2,
+    0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
+  color: #fff !important;
+}
+.sixmover_header_right {
+  flex: 1;
+  text-align: center;
+}
+.sixmover_header_right > .sixmover_header_right_balance {
+  display: flex;
+  flex-direction: column;
+}
+
+.sixmover_footer {
+  width: 100vw;
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+}
+
+.sixmover_body {
+  width: 100vw;
+  height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+.sixmover_table_border {
+  width: 75vw;
+  height: 75vh;
+  display: grid;
+  place-content: center;
+  padding: 20px;
+  -webkit-box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 50vh;
+  box-sizing: border-box;
+  background-size: 100% 60%;
+  background-image: url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg);
+}
+.sixmover_table {
+  position: relative;
+  width: 70.5vw;
+  height: 67vh;
+  border-radius: 50vh;
+  /* display: flex;
+    align-items: center;
+    justify-content: space-evenly; */
+  box-sizing: border-box;
+  background-size: 100% 100%;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  background-image: url(https://i.pinimg.com/originals/20/fe/d6/20fed66c2bb51531210bff6a560cf13b.jpg);
+}
+
+@media only screen and (max-width: 600px) {
+  .sixmover_table {
+    width: 67vw;
+    height: 70.5vh;
+  }
+}

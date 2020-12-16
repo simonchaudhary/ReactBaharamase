@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
 import LoadingFull from "./component/LoadingFull";
-import SixMover from "./component/SixMover";
+import Switcher from "./component/Switcher";
 
 import {
   requestFirebaseNotificationPermission,
@@ -51,7 +51,7 @@ function App() {
         return err;
       });
   }
-  return <SixMover />;
+  return <Switcher />;
   // if (user === "null") {
   //   return <LoadingFull />;
   // } else if (user === "register") {
