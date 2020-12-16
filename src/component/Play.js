@@ -59,12 +59,33 @@ function Play({ sessionID, uid }) {
     alert("deal");
   };
 
+  const endSession = () => {
+    setShowWinner(false);
+  };
+
+  const playAgain = () => {
+    setShowWinner(false);
+  };
+
   return (
     <div>
       {showWinner === true ? (
         <div>
           <Confetti width={size.width} height={size.height} />
-          <DialogBox sessionID={sessionID} />
+          <div className="winner_container">
+            <div className="overlay_winner_bottom">
+              <button class="game-button" onClick={() => endSession()}>
+                End Session
+              </button>
+              <button class="game-button" onClick={() => playAgain()}>
+                Play Again
+              </button>
+            </div>
+            <div className="overlay_winner">
+              <p className="winner_text">Winner Winner Simon</p>
+            </div>
+          </div>
+          {/* <DialogBox sessionID={sessionID} /> */}
         </div>
       ) : (
         <p></p>

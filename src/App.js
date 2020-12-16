@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
 import LoadingFull from "./component/LoadingFull";
+import SixMover from "./component/SixMover";
 
 import {
   requestFirebaseNotificationPermission,
@@ -50,24 +51,24 @@ function App() {
         return err;
       });
   }
-  // return <LoadingFull />;
-  if (user === "null") {
-    return <LoadingFull />;
-  } else if (user === "register") {
-    return (
-      <div>
-        <Registration />;
-      </div>
-    );
-  } else if (user === "session") {
-    return (
-      <div>
-        <Sessions uid={uid} email={email} token={token} />
-      </div>
-    );
-  } else {
-    return <LoadingFull />;
-  }
+  return <SixMover />;
+  // if (user === "null") {
+  //   return <LoadingFull />;
+  // } else if (user === "register") {
+  //   return (
+  //     <div>
+  //       <Registration />;
+  //     </div>
+  //   );
+  // } else if (user === "session") {
+  //   return (
+  //     <div>
+  //       <Sessions uid={uid} email={email} token={token} />
+  //     </div>
+  //   );
+  // } else {
+  //   return <LoadingFull />;
+  // }
 }
 
 export default App;
