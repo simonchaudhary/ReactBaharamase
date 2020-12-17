@@ -15,6 +15,18 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+firebase
+  .auth()
+  .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function () {
+    console.log("Set presistence to Session");
+  })
+  .catch(function (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log("Set presistence ", errorMessage);
+  });
+
 const messaging = firebase.messaging();
 const firestore = firebase.firestore();
 const auth = firebase.auth();

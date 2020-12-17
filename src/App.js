@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import Registration from "./component/Registration";
@@ -13,6 +12,9 @@ import {
   firestore,
 } from "./config/firebaseConfig";
 
+import { useStateValue } from "./States/StateProvider";
+import { actionTypes } from "./States/reducer";
+
 function App() {
   const [email, setEmail] = useState();
   const [uid, setUid] = useState();
@@ -21,16 +23,39 @@ function App() {
   // new way
   const [user, setUser] = useState();
 
+  // StateProvider
+  const [{}, dispatch] = useStateValue();
+
   useEffect(() => {
     isUserLogin();
-    getToken();
-  }, []);
+  }, [token]);
 
   function isUserLogin() {
     setUser("null");
     auth.onAuthStateChanged(user => {
       if (user) {
-        console.log(user);
+        // Save bool to check session or play
+        firestore
+          .collection("switcher")
+          .doc("sixmover")
+          .collection(user.uid)
+          .doc(user.uid)
+          .set({
+            sessionorplay: false,
+          })
+          .then(cred => {
+            console.log("save to firebase");
+          })
+          .catch(err => {
+            console.log("firestore errorss " + err);
+          });
+
+        getToken();
+        console.log("user found", token);
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: user,
+        });
         setUid(user.uid);
         setEmail(user.email);
         setUser("session");
@@ -41,34 +66,26 @@ function App() {
     });
   }
 
-  function getToken() {
-    requestFirebaseNotificationPermission()
-      .then(firebaseToken => {
-        setToken(firebaseToken);
-        console.log("from state " + { token });
-      })
-      .catch(err => {
-        return err;
-      });
+  const getToken = async () => {
+    let result = await requestFirebaseNotificationPermission();
+    console.log("Token : ", result);
+    setToken(result);
+  };
+
+  if (user === "null") {
+    return <LoadingFull />;
+  } else if (user === "register") {
+    return <Registration />;
+  } else if (user === "session") {
+    return (
+      <Switcher />
+      // <div>
+      //   <Sessions uid={uid} email={email} token={token} />
+      // </div>
+    );
+  } else {
+    return <LoadingFull />;
   }
-  return <Switcher />;
-  // if (user === "null") {
-  //   return <LoadingFull />;
-  // } else if (user === "register") {
-  //   return (
-  //     <div>
-  //       <Registration />;
-  //     </div>
-  //   );
-  // } else if (user === "session") {
-  //   return (
-  //     <div>
-  //       <Sessions uid={uid} email={email} token={token} />
-  //     </div>
-  //   );
-  // } else {
-  //   return <LoadingFull />;
-  // }
 }
 
 export default App;

@@ -18,25 +18,6 @@ function Registration() {
 
   const onRegister = e => {
     e.preventDefault();
-    // alert("check");
-    // const data = {
-    //   uID: "Gsl3stD48tZsXyS7OrXx4sq2nT13",
-    // };
-
-    // axios
-    //   .put(
-    //     "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
-    //       "erLuS3X5J7fojlmKwAsYCT46UHj1",
-    //     data
-    //   )
-    //   .then(doc => {
-    //     console.log(doc);
-    //   })
-    //   .catch(error => {
-    //     console.log("error", error);
-    //   });
-    // console.log(result);
-
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(cred => {
