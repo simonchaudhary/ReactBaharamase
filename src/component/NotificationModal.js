@@ -26,26 +26,30 @@ function NotificationModal({ uid }) {
     setIsOpen(!isOpen);
     // USER ADDED TO SESSIOIN ON ACCEPT
 
-    console.log(
-      "playerjoion uid",
-      playerJoinUid,
-      "session owner",
-      sessionOwner
-    );
-    const data = {
-      uID: playerJoinUid,
-    };
-    const result = await axios.put(
-      "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
-        sessionOwner,
-      data
-    );
-    console.log(result);
-    firestore.collection("enter").doc(playerJoinUid).set({
-      playerUid: playerJoinUid,
-      sessionOwner: sessionOwner,
-      join: "done",
-    });
+    // console.log(
+    //   "playerjoion uid",
+    //   playerJoinUid,
+    //   "session owner",
+    //   sessionOwner
+    // );
+    // const data = {
+    //   uID: playerJoinUid,
+    // };
+    // const result = await axios.put(
+    //   "https://us-central1-bahramasefirebase.cloudfunctions.net/session/add-user/" +
+    //     sessionOwner,
+    //   data
+    // );
+    // console.log(result);
+
+    firestore
+      .collection("switcher")
+      .doc("sixmover")
+      .collection(playerJoinUid)
+      .doc(playerJoinUid)
+      .update({
+        sessionorplay: true,
+      });
   };
 
   function modalCancel() {
@@ -61,7 +65,7 @@ function NotificationModal({ uid }) {
   const deleteNotification = () => {
     firestore
       .collection("notification")
-      .doc("ss")
+      .doc("sixmover")
       .delete()
       .then(function () {
         console.log("document has been deleted");
@@ -75,14 +79,14 @@ function NotificationModal({ uid }) {
     console.log("show notification uid " + uid);
     firestore
       .collection("notification")
-      .doc("ss")
+      .doc("sixmover")
       .onSnapshot(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data().title);
           console.log("player join uid :", doc.data().playerJoinUid);
           setPlayerJoinUid(doc.data().playerJoinUid);
-          const owner = doc.data().owner;
-          setSessionOwner(doc.data().owner);
+          const owner = doc.data().sessionOwner;
+          setSessionOwner(doc.data().sessionOwner);
           console.log("owner " + owner);
           console.log("uid " + uid);
           if (owner === uid) {
@@ -116,8 +120,6 @@ function NotificationModal({ uid }) {
 
   return (
     <div>
-      {/* <h4>{uid}</h4>
-      <h3>{token}</h3> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={modalAccept}

@@ -78,10 +78,10 @@ function App() {
     return <Registration />;
   } else if (user === "session") {
     return (
-      // <Switcher />
-      <div>
-        <Sessions uid={uid} email={email} token={token} />
-      </div>
+      <Switcher />
+      // <div>
+      //   <Sessions uid={uid} email={email} token={token} />
+      // </div>
     );
   } else {
     return <LoadingFull />;

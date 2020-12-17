@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { auth, firestore } from "../config/firebaseConfig";
 import { useStateValue } from "../States/StateProvider";
+
+import SixMoverRejectNotification from "../component/SixMoverRejectNotification";
+
 import "../css/sixmoversession.css";
 
 function SixMoverSession() {
@@ -72,29 +75,32 @@ function SixMoverSession() {
   };
 
   return (
-    <div className="sixMover_session_container">
-      <div className="sixMover_session_body">
-        <h3>{user.email}</h3>
-        {sixMoverSessionList.map(sixMoverSession => (
-          <div className="session_list_container">
-            {user.uid === sixMoverSession.id ? (
-              <p>Not Join</p>
-            ) : (
-              <button
-                onClick={() => join(sixMoverSession.id)}
-                className="title"
-              >
-                Join
-              </button>
-            )}
-            <p>{sixMoverSession.id}</p>
-          </div>
-        ))}
-      </div>
-      <div className="sixMover_session_footer">
-        <button onClick={() => check()}>ok</button>
-        <button onClick={() => newsession()}>New Session</button>
-        <button onClick={() => logout()}>Logout</button>
+    <div>
+      <SixMoverRejectNotification uid={user.uid} />
+      <div className="sixMover_session_container">
+        <div className="sixMover_session_body">
+          <h3>{user.email}</h3>
+          {sixMoverSessionList.map(sixMoverSession => (
+            <div className="session_list_container">
+              {user.uid === sixMoverSession.id ? (
+                <p>Not Join</p>
+              ) : (
+                <button
+                  onClick={() => join(sixMoverSession.id)}
+                  className="title"
+                >
+                  Join
+                </button>
+              )}
+              <p>{sixMoverSession.id}</p>
+            </div>
+          ))}
+        </div>
+        <div className="sixMover_session_footer">
+          <button onClick={() => check()}>ok</button>
+          <button onClick={() => newsession()}>New Session</button>
+          <button onClick={() => logout()}>Logout</button>
+        </div>
       </div>
     </div>
   );
