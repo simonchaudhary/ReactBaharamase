@@ -47,10 +47,17 @@
 }
 
 .sixmover_body {
+  position: relative;
   width: 100vw;
   height: 70vh;
   display: grid;
   place-items: center;
+}
+.deal_button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
 }
 
 .sixmover_table_border {

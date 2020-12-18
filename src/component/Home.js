@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import Switcher from "./SixMover/Switcher";
-import Session from "./Sessions";
+import Sessions from "./Sessions";
+import { auth } from "../config/firebaseConfig";
 
 import "../css/home.css";
 import "../css/text.css";
@@ -23,11 +24,24 @@ function Home(uid, email, token) {
     setGame("sixMover");
   };
 
+  // Logout
+  function logout() {
+    auth
+      .signOut()
+      .then(cred => {
+        console.log("Logout successful");
+      })
+      .catch(error => {
+        console.log("error logout " + error);
+      });
+  }
+
   if (isHome === true) {
     return (
       <div className="home_container">
         <div className="home_header">
           <h3>Home</h3>
+          <button onClick={() => logout()}>Logout</button>
         </div>
         <div className="home_body">
           <div className="game_container" onClick={() => teenPatti()}>
@@ -45,20 +59,20 @@ function Home(uid, email, token) {
     );
   } else {
     if (game === "teenPatti") {
-      return;
-      <div>
-        <div className="home_header">
-          <button onClick={() => back()}>Go to Home</button>
-          <p>hello</p>
-        </div>
-        <Session uid={uid} email={email} token={token} />;
-      </div>;
-    } else if (game === "sixMover") {
       return (
         <div>
           <div className="home_header">
             <button onClick={() => back()}>Go to Home</button>
             <p>hello</p>
+          </div>
+          {/* <Sessions uid={uid} email={email} token={token} />; */}
+        </div>
+      );
+    } else if (game === "sixMover") {
+      return (
+        <div>
+          <div className="home_header">
+            <button onClick={() => back()}>Go to Home</button>
           </div>
           <Switcher />;
         </div>

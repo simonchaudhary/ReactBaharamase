@@ -80,10 +80,10 @@ function App() {
   } else if (user === "home") {
     return (
       // <Switcher />
-      <div>
-        <Sessions uid={uid} email={email} token={token} />
-      </div>
-      // <Home uid={uid} email={email} token={token} />
+      // <div>
+      //   <Sessions uid={uid} email={email} token={token} />
+      // </div>
+      <Home uid={uid} email={email} token={token} />
     );
   } else {
     return <LoadingFull />;

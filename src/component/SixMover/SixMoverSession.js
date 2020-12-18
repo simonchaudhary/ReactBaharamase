@@ -31,17 +31,6 @@ function SixMoverSession() {
         sessionorplay: true,
       });
   };
-  // Logout
-  function logout() {
-    auth
-      .signOut()
-      .then(cred => {
-        console.log("Logout successful");
-      })
-      .catch(error => {
-        console.log("error logout " + error);
-      });
-  }
 
   const newsession = async () => {
     const data = {
@@ -79,7 +68,6 @@ function SixMoverSession() {
       <SixMoverRejectNotification uid={user.uid} />
       <div className="sixMover_session_container">
         <div className="sixMover_session_body">
-          <h3>{user.email}</h3>
           {sixMoverSessionList.map(sixMoverSession => (
             <div className="session_list_container">
               {user.uid === sixMoverSession.id ? (
@@ -99,7 +87,6 @@ function SixMoverSession() {
         <div className="sixMover_session_footer">
           <button onClick={() => check()}>ok</button>
           <button onClick={() => newsession()}>New Session</button>
-          <button onClick={() => logout()}>Logout</button>
         </div>
       </div>
     </div>

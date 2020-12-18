@@ -2,6 +2,7 @@ import React from "react";
 import { firestore } from "../../config/firebaseConfig";
 import { useStateValue } from "../../States/StateProvider";
 import { BiArrowBack } from "react-icons/bi";
+import axios from "axios";
 
 import NotificationModal from "./NotificationModal";
 
@@ -20,6 +21,19 @@ function SixMover() {
       .update({
         sessionorplay: false,
       });
+  };
+
+  const deal = async () => {
+    alert("deal");
+    const data = {
+      sessionID: user.uid,
+      players: ["player1", "player2", "player3", "player4", "player5"],
+    };
+    const result = await axios.post(
+      "https://us-central1-bahramasefirebase.cloudfunctions.net/sixMove/deal-hands",
+      data
+    );
+    console.log(result);
   };
   return (
     <div>
@@ -40,6 +54,9 @@ function SixMover() {
           </div>
         </div>
         <div className="sixmover_body">
+          <button className="deal_button" onClick={() => deal()}>
+            Deal
+          </button>
           <div className="sixmover_table_border">
             <div className="sixmover_table"></div>
           </div>
