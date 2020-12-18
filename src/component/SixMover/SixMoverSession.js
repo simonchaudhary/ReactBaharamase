@@ -25,8 +25,8 @@ function SixMoverSession() {
     firestore
       .collection("switcher")
       .doc("sixmover")
-      .collection("uid")
-      .doc("uid")
+      .collection(user.uid)
+      .doc(user.uid)
       .update({
         sessionorplay: true,
       });

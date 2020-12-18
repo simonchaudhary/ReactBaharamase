@@ -12,14 +12,18 @@ import "../../css/button.css";
 function SixMover() {
   const [{ user }, dispatch] = useStateValue();
   const check = () => {
-    firestore.collection("switcher").doc("sixmover").update({
-      sessionorplay: false,
-    });
+    firestore
+      .collection("switcher")
+      .doc("sixmover")
+      .collection(user.uid)
+      .doc(user.uid)
+      .update({
+        sessionorplay: false,
+      });
   };
   return (
     <div>
       <NotificationModal uid={user.uid} />
-      <p>{user.uid}</p>
       <div className="sixmover_container">
         <div className="sixmover_header">
           <div className="sixmover_header_left">

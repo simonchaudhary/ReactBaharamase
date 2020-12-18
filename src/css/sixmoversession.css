@@ -1,11 +1,11 @@
 .sixMover_session_container {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   background-color: salmon;
 }
 .sixMover_session_body {
   width: 100vw;
-  height: 90vh;
+  height: 80vh;
   background-color: blue;
 }
 .session_list_container {

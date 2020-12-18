@@ -5,6 +5,7 @@ import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
 import LoadingFull from "./component/LoadingFull";
 import Switcher from "./component/SixMover/Switcher";
+import Home from "./component/Home";
 
 import {
   requestFirebaseNotificationPermission,
@@ -58,7 +59,7 @@ function App() {
         });
         setUid(user.uid);
         setEmail(user.email);
-        setUser("session");
+        setUser("home");
       } else {
         console.log("register logged out");
         setUser("register");
@@ -76,12 +77,13 @@ function App() {
     return <LoadingFull />;
   } else if (user === "register") {
     return <Registration token={token} />;
-  } else if (user === "session") {
+  } else if (user === "home") {
     return (
       // <Switcher />
-      <div>
-        <Sessions uid={uid} email={email} token={token} />
-      </div>
+      // <div>
+      //   <Sessions uid={uid} email={email} token={token} />
+      // </div>
+      <Home uid={uid} email={email} token={token} />
     );
   } else {
     return <LoadingFull />;
