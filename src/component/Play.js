@@ -134,7 +134,10 @@ function Play({ sessionID, uid }) {
                   {users[1] === uid ? (
                     [
                       currentPlayer === users[1] ? (
-                        <Button onClick={() => turn()}> Turn</Button>
+                        <div>
+                          <input placeholder="0"></input>
+                          <Button onClick={() => turn()}> Bet</Button>
+                        </div>
                       ) : (
                         <p>not my turn</p>
                       ),
@@ -155,7 +158,10 @@ function Play({ sessionID, uid }) {
                   {users[0] === uid ? (
                     [
                       currentPlayer === users[0] ? (
-                        <Button onClick={() => turn()}> Turn</Button>
+                        <div>
+                          <input placeholder="0"></input>
+                          <Button onClick={() => turn()}> Bet</Button>
+                        </div>
                       ) : (
                         <p>not my turn</p>
                       ),
@@ -186,7 +192,10 @@ function Play({ sessionID, uid }) {
                   {users[0] === uid ? (
                     [
                       currentPlayer === users[0] ? (
-                        <Button onClick={() => turn()}> Turn</Button>
+                        <div>
+                          <input placeholder="0"></input>
+                          <Button onClick={() => turn()}> Bet</Button>
+                        </div>
                       ) : (
                         <p>not my turn</p>
                       ),
@@ -207,7 +216,10 @@ function Play({ sessionID, uid }) {
                   {users[1] === uid ? (
                     [
                       currentPlayer === users[1] ? (
-                        <Button onClick={() => turn()}> Turn</Button>
+                        <div>
+                          <input placeholder="0"></input>
+                          <Button onClick={() => turn()}> Bet</Button>
+                        </div>
                       ) : (
                         <p>not my turn</p>
                       ),
@@ -228,7 +240,10 @@ function Play({ sessionID, uid }) {
                   {users[2] === uid ? (
                     [
                       currentPlayer === users[2] ? (
-                        <Button onClick={() => turn()}> Turn</Button>
+                        <div>
+                          <input placeholder="0"></input>
+                          <Button onClick={() => turn()}>Bet</Button>
+                        </div>
                       ) : (
                         <p>not my turn</p>
                       ),
