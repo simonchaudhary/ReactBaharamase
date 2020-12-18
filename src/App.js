@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Registration from "./component/Registration";
 import Sessions from "./component/Sessions";
 import LoadingFull from "./component/LoadingFull";
-import Switcher from "./component/Switcher";
+import Switcher from "./component/SixMover/Switcher";
 
 import {
   requestFirebaseNotificationPermission,
@@ -75,13 +75,13 @@ function App() {
   if (user === "null") {
     return <LoadingFull />;
   } else if (user === "register") {
-    return <Registration />;
+    return <Registration token={token} />;
   } else if (user === "session") {
     return (
-      <Switcher />
-      // <div>
-      //   <Sessions uid={uid} email={email} token={token} />
-      // </div>
+      // <Switcher />
+      <div>
+        <Sessions uid={uid} email={email} token={token} />
+      </div>
     );
   } else {
     return <LoadingFull />;

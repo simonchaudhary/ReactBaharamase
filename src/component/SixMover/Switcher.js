@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import SixMoverSession from "./SixMoverSession";
 import SixMover from "./SixMover";
-import { firestore } from "../config/firebaseConfig";
-import { useStateValue } from "../States/StateProvider";
+import { firestore } from "../../config/firebaseConfig";
+import { useStateValue } from "../../States/StateProvider";
 
 function Switcher() {
   console.log("Switcher page");

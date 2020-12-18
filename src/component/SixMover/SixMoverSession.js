@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { auth, firestore } from "../config/firebaseConfig";
-import { useStateValue } from "../States/StateProvider";
+import { auth, firestore } from "../../config/firebaseConfig";
+import { useStateValue } from "../../States/StateProvider";
 
-import SixMoverRejectNotification from "../component/SixMoverRejectNotification";
+import SixMoverRejectNotification from "./SixMoverRejectNotification";
 
-import "../css/sixmoversession.css";
+import "../../css/sixmoversession.css";
 
 function SixMoverSession() {
   const [{ user }, dispatch] = useStateValue();

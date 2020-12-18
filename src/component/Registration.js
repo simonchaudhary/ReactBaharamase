@@ -11,7 +11,8 @@ import "../css/style.css";
 
 import axios from "axios";
 
-function Registration() {
+function Registration({ token }) {
+  console.log("Registration page", token);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegisterScreen, setIsRegisterScreen] = useState(true);
@@ -27,7 +28,14 @@ function Registration() {
           .collection("users")
           .doc(cred.user.uid)
           .set({
+            createdDate: Date().toLocaleString(),
+            creditBalance: 2000,
+            deviceToken: token,
+            displayName: email,
             email: email,
+            lastOnline: "2020-07-06 11:51:04",
+            phoneNumber: 99999999,
+            status: "offline",
             uid: cred.user.uid,
             password: password,
           })

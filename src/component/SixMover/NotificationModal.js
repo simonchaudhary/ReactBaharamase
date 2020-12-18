@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { firestore, auth } from "../config/firebaseConfig";
+import { firestore, auth } from "../../config/firebaseConfig";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
 import Modal from "react-modal";
-import "../css/modalstyle.css";
-import "../css/text.css";
-import "../css/button.css";
-import "../css/style.css";
+import "../../css/modalstyle.css";
+import "../../css/text.css";
+import "../../css/button.css";
+import "../../css/style.css";
 
 Modal.setAppElement("#root");
 

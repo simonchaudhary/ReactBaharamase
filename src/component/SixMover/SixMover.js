@@ -1,13 +1,13 @@
 import React from "react";
-import { firestore } from "../config/firebaseConfig";
-import { useStateValue } from "../States/StateProvider";
+import { firestore } from "../../config/firebaseConfig";
+import { useStateValue } from "../../States/StateProvider";
 import { BiArrowBack } from "react-icons/bi";
 
 import NotificationModal from "./NotificationModal";
 
-import "../css/sixmover.css";
-import "../css/text.css";
-import "../css/button.css";
+import "../../css/sixmover.css";
+import "../../css/text.css";
+import "../../css/button.css";
 
 function SixMover() {
   const [{ user }, dispatch] = useStateValue();
